@@ -201,6 +201,8 @@ fi
 
 # OS Check
 
+echo "=====SUPPORTED OS CHECK====="
+
 if ``cat /etc/redhat-release | grep "release 5.*" > /dev/null``  ; then
     cat /etc/redhat-release;
     echo "The OS is Supported";
