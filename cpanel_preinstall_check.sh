@@ -1,7 +1,7 @@
 #!/bin/bash
 ###############################
 ##  cPanel Preinstall Check  ##
-##  Version 1.2.2.3          ##
+##  Version 1.2.2.4          ##
 ##  By: Matthew Vetter       ##
 ##      cPanel, Inc.         ##
 ###############################
@@ -200,20 +200,24 @@ fi
 
 # OS & Kernel Check
 
-echo -e "${yellow}=====SUPPORTED OS CHECK=====${NC}"
+echo -e "${yellow}=====SUPPORTED OS & KERNEL CHECK=====${NC}"
 
 if ``cat /etc/redhat-release | grep "release 5.*" > /dev/null``  ; then
             echo -e "${green}The OS is Supported${NC}";
-            echo -e "\t \_`cat /etc/redhat-release`"
+            echo -e "\t \_ `cat /etc/redhat-release`"
 elif ``cat /etc/redhat-release | grep "release 6.*" > /dev/null``  ; then
             echo -e "${green}The OS is Supported${NC}";
-            echo -e "\t \_`cat /etc/redhat-release`"
+            echo -e "\t \_ `cat /etc/redhat-release`"
 else
         echo -e "${red}The OS is Not Supported${NC}";
-        echo -e "\t \_`cat /etc/redhat-release`"
+        echo -e "\t \_ `cat /etc/redhat-release`"
 fi
 
 if ``uname -r | grep "grs" > /dev/null``; then
+        echo -e "${red}Kernel Not Supported${NC}";
+        echo -e "\t \_ GRSEC Kernels are Not Supported";
+        echo -e "\t \_ `uname -r`";
+    elif ``uname -r | grep -i "x" > /dev/null``; then
         echo -e "${red}Kernel Not Supported${NC}";
         echo -e "\t \_ GRSEC Kernels are Not Supported";
         echo -e "\t \_ `uname -r`";
