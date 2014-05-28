@@ -1,7 +1,7 @@
 #!/bin/bash
 ###############################
 ##  cPanel Preinstall Check  ##
-##  Version 1.2.4.1          ##
+##  Version 1.2.5.1          ##
 ##  By: Matthew Vetter       ##
 ##      cPanel, Inc.         ##
 ###############################
@@ -18,16 +18,27 @@ NC='\e[0m' # No Color (if Not added, it will change the entire terminal output t
 echo -e "${yellow}=====PERL CHECK=====${NC}";
 
 if perl < /dev/null > /dev/null 2>&1  ; then
-        echo -e "${green}Perl is Installed - Pass${NC}"
-        echo -e "\t \_ Perl `perl -v | grep 'This is perl, v'| awk '{print $4}'` Installed - Verify this is a Supported Version"
+        echo -e "${green}Perl is Installed - Pass${NC}";
+        echo -e "\t \_ Perl `perl -v | grep 'This is perl, v'| awk '{print $4}'` Installed - Verify this is a Supported Version";
             if ``cat /etc/redhat-release | grep "release 6.*" > /dev/null``  ; then
-                echo -e "\t \_ Latest version in Yum is - Perl `yum info perl | grep Version | awk '{print $3}'`"
+                echo -e "\t \_ Latest version in Yum is - Perl `yum info perl | grep Version | awk '{print $3}'`";
             elif ``cat /etc/redhat-release | grep "release 5.*" > /dev/null``  ; then
-                echo -e "\t \_ Latest version in Yum is - Perl ` yum info perl | awk '/Installed Packages/ {flag=1;next} /Available Packages/{flag=0} flag {print}' | grep Version | awk '{print $2}'`"
+                echo -e "\t \_ Latest version in Yum is - Perl ` yum info perl | awk '/Installed Packages/ {flag=1;next} /Available Packages/{flag=0} flag {print}' | grep Version | awk '{print $2}'`";
             fi
     else
         echo -e "${red}Perl not Installed - Fail${NC}";
         echo -e "\t \_ To install perl run: yum install perl";
+fi
+
+#Check if wget Installed
+
+echo -e "${yellow}=====WGET CHECK=====${NC}";
+
+if command -v wget >/dev/null 2>&1  ; then
+        echo -e "${green}wget is Installed - Pass${NC}";
+    else
+        echo -e "${red}wget not Installed - Fail${NC}";
+        echo -e "\t \_ To install wget run: yum install wget";
 fi
 
 #Check SELINUX Status
@@ -41,22 +52,22 @@ if [ -f "$selinuxfile" ] ; then
             echo -e "${red}SELINUX - Fail${NC}";
             echo -e "\t \_ SELINUX is commented out!"
             echo -e "\t \_ To fix this please review the following article http://www.cyberciti.biz/faq/howto-turn-off-selinux/ and apply the permanent fix by editing /etc/sysconfig/selinux, uncommenting SELINUX (remove the # from in front of SELINUX), setting it to disabled and then rebooting the server";
-	elif [ -f "$selinuxfile" ] ; then
-	    if ``cat "$selinuxfile" | grep "SELINUX=" | grep "enforcing" > /dev/null`` ; then
-	            echo -e "${red}SELINUX - Fail${NC}";
-	            echo -e "\t \_ SELINUX is set to enforcing!"
-	            echo -e "\t \_ To fix this please review the following article http://www.cyberciti.biz/faq/howto-turn-off-selinux/ and apply the permanent fix by editing /etc/sysconfig/selinux, setting it to disabled and then rebooting the server";
-		elif [ -f "$selinuxfile" ] ; then
-		    if ``cat "$selinuxfile" | grep "SELINUX=" | grep "permissive" > /dev/null`` ; then
-	            echo -e "${red}SELINUX - Fail${NC}";
-	            echo -e "\t \_ SELINUX is set to permissive!"
-	            echo -e "\t \_ To fix this please review the following article http://www.cyberciti.biz/faq/howto-turn-off-selinux/ and apply the permanent fix by editing /etc/sysconfig/selinux, setting it to disabled and then rebooting the server";
-			else
-			    echo -e "${green}SELINUX - Pass${NC}";
-			    echo -e "\t \_ SELINUX appears to be disabled already";
-			fi
-		fi
-	fi
+    elif [ -f "$selinuxfile" ] ; then
+        if ``cat "$selinuxfile" | grep "SELINUX=" | grep "enforcing" > /dev/null`` ; then
+                echo -e "${red}SELINUX - Fail${NC}";
+                echo -e "\t \_ SELINUX is set to enforcing!"
+                echo -e "\t \_ To fix this please review the following article http://www.cyberciti.biz/faq/howto-turn-off-selinux/ and apply the permanent fix by editing /etc/sysconfig/selinux, setting it to disabled and then rebooting the server";
+        elif [ -f "$selinuxfile" ] ; then
+            if ``cat "$selinuxfile" | grep "SELINUX=" | grep "permissive" > /dev/null`` ; then
+                echo -e "${red}SELINUX - Fail${NC}";
+                echo -e "\t \_ SELINUX is set to permissive!"
+                echo -e "\t \_ To fix this please review the following article http://www.cyberciti.biz/faq/howto-turn-off-selinux/ and apply the permanent fix by editing /etc/sysconfig/selinux, setting it to disabled and then rebooting the server";
+            else
+                echo -e "${green}SELINUX - Pass${NC}";
+                echo -e "\t \_ SELINUX appears to be disabled already";
+            fi
+        fi
+    fi
 fi
 
 # Check for Yum Groups All Versions (Group names the same accross all versions)
