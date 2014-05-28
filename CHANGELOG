@@ -1,0 +1,16 @@
+Branch: Master
+Commit Log: https://github.com/cpmatthew/cPanel-PreInstall-Check/commits/master
+
+The master branch versions may differ from the dev branch with a higher version number as features are added, tested and fixed in development before being applied to the master/production script. For a full list of changes please review the Dev Branch ChangeLog. 
+
+1.2.5.2 - Fixed a regression in the code structure applied with update 1.2.5.1 for selinux that was fixed in 1.4
+1.2.5.1 - Added a check for wget
+1.2.4.1 - Cleaned up code structure for selinux nested if statments
+1.2.4 - Removed Firewall Check 
+1.2.3 - Fixed FQDN Check output for when dig not installed.
+1.2.1.2 - Fixed a bug in output
+1.2.1.1 - Group check updated to safer method
+1.2 - Cleaned up Output, Added Color for easier readability.
+1.1.2.03 - Added FQDN/Hostname check, Supported OS Check & Modified output for yum group 
+1.1.1 - Removed Auto Fixing Issues and Switched to a Check Only Script, added Version Info into code.
+1.0 - Inital Script, Auto Fixed cPanel Preinstall Issues
