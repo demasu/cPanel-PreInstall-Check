@@ -3,6 +3,7 @@ Commit Log: https://github.com/cpmatthew/cPanel-PreInstall-Check/commits/master
 
 The master branch versions may differ from the dev branch with a higher version number as features are added, tested and fixed in development before being applied to the master/production script. For a full list of changes please review the Dev Branch ChangeLog. 
 
+1.2.7.1 - Added check for presence of a cPanel Install
 1.2.6 - Improved the process for selinux checks
 1.2.5.2 - Fixed a regression in the code structure applied with update 1.2.5.1 for selinux that was fixed in 1.2.4.1
 1.2.5.1 - Added a check for wget
