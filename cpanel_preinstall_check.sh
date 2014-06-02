@@ -1,7 +1,7 @@
 #!/bin/bash
 ###############################
 ##  cPanel Preinstall Check  ##
-##  Version 1.2.7.4          ##
+##  Version 1.2.7.5          ##
 ##  By: Matthew Vetter       ##
 ##      cPanel, Inc.         ##
 ###############################
@@ -242,5 +242,4 @@ if ``uname -r | grep "grs" > /dev/null``; then
     else
         echo -e "${red}Kernel Not Supported${NC}";
         echo -e "\t \_ `uname -r`";
-fi     echo -e "\t \_ `uname -r`";
 fi
