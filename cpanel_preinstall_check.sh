@@ -240,8 +240,4 @@ if `uname -r | grep "grs" > /dev/null`; then
     else
         echo -e "${red}Kernel Not Supported${NC}";
         echo -e "\t \_ `uname -r`";
-fi        echo -e "\t \_ `uname -r`";
-    else
-        echo -e "${red}Kernel Not Supported${NC}";
-        echo -e "\t \_ `uname -r`";
 fi
