@@ -3,7 +3,7 @@ Commit Log: https://github.com/cpmatthew/cPanel-PreInstall-Check/commits/master
 
 The master branch versions may differ from the dev branch with a higher version number as features are added, tested and fixed in development before being applied to the master/production script. For a full list of changes please review the Dev Branch ChangeLog. 
 
-1.2.8.1 - fixed extra if statement kernel check (syntax issue from 1.2.7.5 seems to have gotten added back)
+1.2.8.1 - fixed extra else/fi in kernel check added by demasu in 1.2.8
 1.2.8 - Reduced spawned processes and subshells of the script by about half
 1.2.7.5 - fixed bug in kernel check syntax
 1.2.7.4 - additional changes to hostname check output
